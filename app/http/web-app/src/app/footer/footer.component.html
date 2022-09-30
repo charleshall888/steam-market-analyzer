@@ -1,0 +1,34 @@
+<div
+    class="flex justify-content-between flex-wrap"
+    style="
+        background-color: #3c728b21;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 90px;
+    "
+>
+    <div class="flex align-items-center justify-content-center ml-2">
+        <p-button
+            (onClick)="goDataSource()"
+            label="Data from Kaggle.com"
+            icon="pi pi-database"
+            iconPos="left"
+        ></p-button>
+    </div>
+    <div class="flex align-items-center justify-content-center mr-2">
+        <img
+            style="width: 80px; border-radius: 50%"
+            src="assets/Charles_Hall_avatar.jpg"
+        />
+        <div class="ml-2">
+            <p style="margin-bottom: 5px">Created by Charlie Hall</p>
+            <p-button
+                (onClick)="goPortfolio()"
+                label="See Portfolio"
+                icon="pi pi-briefcase"
+                iconPos="left"
+            ></p-button>
+        </div>
+    </div>
+</div>
