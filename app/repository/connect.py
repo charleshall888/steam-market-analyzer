@@ -31,3 +31,6 @@ def connect_tcp_socket() -> sqlalchemy.engine.base.Engine:
         # ...
     )
     return pool
+
+    #Start-Process -filepath "C:\tools\cloud_sql_proxy.exe" -ArgumentList "-instances=<PROJECT-ID>:<INSTANCE-REGION>:<INSTANCE-NAME>=tcp:5432 -credential_file=<CREDENTIALS_JSON_FILE>"
+    #FLASK_APP=$PWD/app/api/endpoints.py FLASK_ENV=development pipenv run python -m flask run --port 4433
