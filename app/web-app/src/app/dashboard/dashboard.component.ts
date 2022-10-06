@@ -9,50 +9,51 @@ import { ApiService } from 'src/api.service';
 })
 export class DashboardComponent implements OnInit {
     constructor(private apiService: ApiService) {}
-
+    public style: any = {
+        width: '100%',
+        height: '100%',
+    };
     public columnDefs: ColDef[] = [
-        { headerName: 'ID', field: 'appid' },
-        { field: 'name' },
-        { headerName: 'Release Date', field: 'release_date' },
-        { field: 'developer' },
-        { headerName: 'Median Playtime', field: 'median_playtime' },
-        { field: 'owners' },
-        { field: 'price' },
-        { field: 'steamspy_tags' },
+        { headerName: 'ID', field: 'appid', minWidth: 80, maxWidth: 80 },
+        { field: 'name', width: 400 },
+        {
+            headerName: 'Release Date',
+            field: 'release_date',
+            width: 200,
+        },
+        { field: 'developer', width: 400 },
+        {
+            headerName: 'Median Playtime (Hrs)',
+            field: 'median_playtime',
+
+            width: 20,
+            maxWidth: 200,
+        },
+        { field: 'owners', width: 200, maxWidth: 180 },
+        { field: 'price', minWidth: 100, maxWidth: 100 },
+        { headerName: 'categories', field: 'categories', width: 200 },
+        { headerName: 'tags', field: 'steamspy_tags', width: 200 },
+        {
+            headerName: '+Reviews',
+            field: 'positive_ratings',
+            width: 50,
+            maxWidth: 130,
+        },
+        {
+            headerName: '-Reviews',
+            field: 'negative_ratings',
+            width: 50,
+            maxWidth: 130,
+        },
     ];
 
-    public genreGameCounts: any;
-    public pricePlaytimeData: any;
-    public basicOptions = {
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#495057',
-                },
-            },
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: '#495057',
-                },
-                grid: {
-                    color: '#ebedef',
-                },
-            },
-            y: {
-                ticks: { suggestedMax: 100, color: '#495057' },
-                grid: {
-                    color: '#ebedef',
-                },
-            },
-        },
-    };
     public defaultColDef: ColDef = {
         flex: 1,
         sortable: true,
         filter: true,
         autoHeight: true,
+        minWidth: 200,
+        resizable: true,
     };
 
     public rowData: any;
@@ -60,39 +61,6 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
         this.apiService.getGames().subscribe((data) => {
             this.rowData = data;
-        });
-        this.apiService.getPlaytimesByPrice().subscribe((data) => {
-            this.pricePlaytimeData = {
-                labels: data.prices,
-                datasets: [
-                    {
-                        label: 'Average Playtime (Hrs)',
-                        data: data.playtimes,
-                        fill: false,
-                        borderColor: '#FFA726',
-                        tension: 0.4,
-                    },
-                ],
-            };
-            this.apiService.getGenreCounts().subscribe((data) => {
-                this.genreGameCounts = {
-                    labels: [
-                        'Action',
-                        'Adventure',
-                        'Strategy',
-                        'RPG',
-                        'Casual',
-                        'Simulation',
-                    ],
-                    datasets: [
-                        {
-                            label: 'Games by Genre',
-                            backgroundColor: '#42A5F5',
-                            data: data.genreCounts,
-                        },
-                    ],
-                };
-            });
         });
     }
 }

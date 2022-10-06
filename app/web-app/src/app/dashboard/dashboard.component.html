@@ -1,21 +1,22 @@
-<ag-grid-angular
-    [ngStyle]="{ width: '1200px', height: '700px' }"
-    [rowData]="rowData"
-    class="ag-theme-material"
-    domLayout="normal"
-    [animateRows]="true"
-    [columnDefs]="columnDefs"
-    [defaultColDef]="defaultColDef"
-></ag-grid-angular>
+<div [ngStyle]="style">
+    <ag-grid-angular
+        #gamesGrid
+        [ngStyle]="{ width: '100%', height: '700px' }"
+        [rowData]="rowData"
+        class="ag-theme-material"
+        domLayout="normal"
+        [animateRows]="true"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+    ></ag-grid-angular>
+</div>
 <div class="flex flex-wrap mt-5">
     <div style="min-width: 600px">
-        <p-chart type="bar" [data]="genreGameCounts"></p-chart>
+        <app-genre-chart></app-genre-chart>
     </div>
     <div style="min-width: 600px">
-        <p-chart
-            type="line"
-            [data]="pricePlaytimeData"
-            [options]="basicOptions"
-        ></p-chart>
+        <app-playtime-chart></app-playtime-chart>
     </div>
 </div>

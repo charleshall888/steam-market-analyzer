@@ -6,7 +6,7 @@ class Service(object):
     pool = connect_tcp_socket()
     conn = pool.connect()
     cur = conn.connection.cursor()
-    cur.execute("select * from games limit 10")
+    cur.execute("select * from games limit 100")
     rows = cur.fetchall()
     # Convert query to objects of key-value pairs
     objects_list = []
