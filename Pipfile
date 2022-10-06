@@ -8,6 +8,7 @@ flask = "*"
 flask-cors = "*"
 sqlalchemy = "*"
 pandas = "*"
+pg8000 = "*"
 
 [dev-packages]
 

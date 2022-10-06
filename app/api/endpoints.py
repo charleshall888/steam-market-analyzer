@@ -9,6 +9,13 @@ CORS(app)
 def index():
  return json_response(Game.findAllGames())
 
+@app.route("/playtimesByPrice", methods=["GET"])
+def playtimesByPrice():
+ return json_response(Game.findPlaytimeByPrice())
+
+@app.route("/genreGameCounts", methods=["GET"])
+def findGenreGameCounts():
+ return json_response(Game.findGenreGameCounts())
 
 def json_response(payload, status=200):
- return (json.dumps(payload), status, {'content-type': 'application/json'})
+ return (payload, status, {'content-type': 'application/json'})

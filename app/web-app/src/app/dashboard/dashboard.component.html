@@ -1,8 +1,21 @@
 <ag-grid-angular
-    [ngStyle]="{ width: '1200px', height: '300px' }"
+    [ngStyle]="{ width: '1200px', height: '700px' }"
     [rowData]="rowData"
     class="ag-theme-material"
     domLayout="normal"
     [animateRows]="true"
     [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
 ></ag-grid-angular>
+<div class="flex flex-wrap mt-5">
+    <div style="min-width: 600px">
+        <p-chart type="bar" [data]="genreGameCounts"></p-chart>
+    </div>
+    <div style="min-width: 600px">
+        <p-chart
+            type="line"
+            [data]="pricePlaytimeData"
+            [options]="basicOptions"
+        ></p-chart>
+    </div>
+</div>
