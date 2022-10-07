@@ -1,19 +1,19 @@
 from flask import Flask, json, g
-from app.game.service import Service as Game
+from app.api.service import Service as Game
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/games", methods=["GET"])
+@app.route("/api/games", methods=["GET"])
 def index():
  return json_response(Game.findAllGames())
 
-@app.route("/playtimesByPrice", methods=["GET"])
+@app.route("/api/playtimesByPrice", methods=["GET"])
 def playtimesByPrice():
  return json_response(Game.findPlaytimeByPrice())
 
-@app.route("/genreGameCounts", methods=["GET"])
+@app.route("/api/genreGameCounts", methods=["GET"])
 def findGenreGameCounts():
  return json_response(Game.findGenreGameCounts())
 

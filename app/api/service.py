@@ -1,4 +1,4 @@
-from app.repository.connect import connect_tcp_socket
+from app.api.connect import connect_tcp_socket
 import json
 import collections
 class Service(object):

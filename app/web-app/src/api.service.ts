@@ -9,7 +9,7 @@ export class ApiService {
     constructor(private http: HttpClient) {}
 
     public getGames(): Observable<object> {
-        return this.http.get('http://127.0.0.1:4433/games', {
+        return this.http.get('http://127.0.0.1:4433/api/games', {
             headers: {
                 Authorization: `Bearer 12345`,
             },
@@ -24,7 +24,7 @@ export class ApiService {
         return this.http.get<{
             prices: string[];
             playtimes: number[];
-        }>('http://127.0.0.1:4433/playtimesByPrice', {
+        }>('http://127.0.0.1:4433/api/playtimesByPrice', {
             headers: {
                 Authorization: `Bearer 12345`,
             },
@@ -37,7 +37,7 @@ export class ApiService {
     }> {
         return this.http.get<{
             genreCounts: number[];
-        }>('http://127.0.0.1:4433/genreGameCounts', {
+        }>('http://127.0.0.1:4433/api/genreGameCounts', {
             headers: {
                 Authorization: `Bearer 12345`,
             },
