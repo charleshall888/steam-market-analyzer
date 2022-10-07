@@ -1,9 +1,9 @@
-from app.api.connect import connect_tcp_socket
+from app.api.connect import connect_unix_socket
 import json
 import collections
 class Service(object):
   def findAllGames():
-    pool = connect_tcp_socket()
+    pool = connect_unix_socket()
     conn = pool.connect()
     cur = conn.connection.cursor()
     cur.execute("select * from games limit 100")
@@ -34,7 +34,7 @@ class Service(object):
     return json.dumps(objects_list)
 
   def findPlaytimeByPrice():
-    pool = connect_tcp_socket()
+    pool = connect_unix_socket()
     conn = pool.connect()
     cur = conn.connection.cursor()
     cur.execute("select CONCAT('$',price), ROUND(AVG(average_playtime)) from games WHERE average_playtime < 40000 GROUP BY price ORDER BY price asc;")
@@ -48,7 +48,7 @@ class Service(object):
 
 
   def findGenreGameCounts():
-    pool = connect_tcp_socket()
+    pool = connect_unix_socket()
     conn = pool.connect()
     cur = conn.connection.cursor()
     cur.execute("SELECT (SELECT COUNT(*) AS action FROM games WHERE genres LIKE '%Action%') AS action, (SELECT COUNT(*) AS adventure FROM games WHERE genres LIKE '%Adventure%') AS adventure, (SELECT COUNT(*) AS strategy FROM games WHERE genres LIKE '%Strategy%') AS strategy, (SELECT COUNT(*) AS rpg FROM games WHERE genres LIKE '%RPG%') AS rpg, (SELECT COUNT(*) AS casual FROM games WHERE genres LIKE '%Casual%') AS casual, (SELECT COUNT(*) AS simulation FROM games WHERE genres LIKE '%Simulation%') AS simulation")

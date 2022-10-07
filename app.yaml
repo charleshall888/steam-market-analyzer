@@ -2,10 +2,9 @@ runtime: python310
 
 
 handlers:
-- url: http://127.0.0.1:4433/api/.*
+- url: /api/.*
+  script: auto
   secure: always
-  static_files: app/api/.*
-  upload: app/api/.*
   
 # Routing for bundles to serve directly
 - url: /((?:runtime|main|polyfills|styles|vendor)\.[a-z0-9]+\.js)
@@ -51,3 +50,9 @@ handlers:
   http_headers:
     Strict-Transport-Security: max-age=31536000; includeSubDomains
     X-Frame-Options: DENY
+
+env_variables:
+  INSTANCE_UNIX_SOCKET: /cloudsql/premium-episode-364113:us-east1:steam-market-analyzer12345
+  DB_USER: admin
+  DB_PASS: M!a1colt
+  DB_NAME: steam_games

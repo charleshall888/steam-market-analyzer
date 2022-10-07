@@ -7,9 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
     constructor(private http: HttpClient) {}
-
     public getGames(): Observable<object> {
-        return this.http.get('http://127.0.0.1:4433/api/games', {
+        return this.http.get(`https://premium-episode-364113.ue.r.appspot.com/api/games`, {
             headers: {
                 Authorization: `Bearer 12345`,
             },
@@ -24,7 +23,7 @@ export class ApiService {
         return this.http.get<{
             prices: string[];
             playtimes: number[];
-        }>('http://127.0.0.1:4433/api/playtimesByPrice', {
+        }>(`https://premium-episode-364113.ue.r.appspot.com/api/playtimesByPrice`, {
             headers: {
                 Authorization: `Bearer 12345`,
             },
@@ -37,7 +36,7 @@ export class ApiService {
     }> {
         return this.http.get<{
             genreCounts: number[];
-        }>('http://127.0.0.1:4433/api/genreGameCounts', {
+        }>(`https://premium-episode-364113.ue.r.appspot.com/api/genreGameCounts`, {
             headers: {
                 Authorization: `Bearer 12345`,
             },
